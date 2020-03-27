@@ -4,24 +4,24 @@
         <meta charset="UTF-8">
         <title>Vue.js sample</title>
         <link rel="stylesheet" href="style.css">
-        <script src="https://cdn.jsdeliver.net/npm/vue@2.5.17/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     </head>
 
     <body>
         <h2>クリックしたらカウントアップ</h2>
         <div id="app">
-            <p>{{count}}回</p>
+            <p> {{count}}回</p>
             <button v-on:click="countUp">カウント</button>
         </div>
 
         <script>
             new Vue({
                 el: "#app",
-                data:{
+                data: {
                     count:0
                 },
-                method:{
-                    countUp:function(){
+                methods: {
+                    countUp: function(){
                         this.count++;
                     }
                 }
