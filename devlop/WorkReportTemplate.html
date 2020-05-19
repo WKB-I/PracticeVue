@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <base target="_top">
-        <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
         <meta charset="UTF-8">
-        <title>Vue.js sample</title>
+        <title>作業報告テンプレート</title>
         <link rel="stylesheet" href="style.css">
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     </head>
@@ -20,8 +18,8 @@
             <input type="text"  v-model.trim="addtext" v-on:keyup.enter="addToDo" placeholder="すること">
             <p><button v-on:click="clearnToDo">処理済みを削除</button></p>
             <p>{{ remaining }}/{{ todos.length }}件処理</p>
-            <p>{{ subject }}</p>
-            <p>{{ body}}</p>
+            <p>{{ subject}}</p>
+            <p>{{ body }}</p>
         </div>
         <style>
             .donestyle{
@@ -38,8 +36,8 @@
                         {done:false, text:'パンを買う'},
                         {done:false, text:'コーヒーを買う'}
                     ],
-                    subject:'メールのタイトル',
-                    body:'メールの本文'
+                    subject:'メールタイトル',
+                    body:'本文'
                 },
                 computed:{
                     remaining:function(){
@@ -58,6 +56,11 @@
                     clearnToDo:function(){
                         this.todos = this.todos.filter(function(val){
                             return val.done==false;
+                        })
+                    },
+                    outputBody:function(){
+                        return this.todos.filter(function(val){
+                            return item.todos.text.toString();
                         })
                     }
                 }
