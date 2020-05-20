@@ -17,9 +17,18 @@
             </div>
             <input type="text"  v-model.trim="addtext" v-on:keyup.enter="addToDo" placeholder="すること">
             <p><button v-on:click="clearnToDo">処理済みを削除</button></p>
-            <p>{{ remaining }}/{{ todos.length }}件処理</p>
+            <h3>メールタイトル</h3>
             <p>{{ subject}}</p>
-            <p>{{ body }}</p>
+            <h3>本文</h3>
+            <p>{{ boss }}</p>
+            <p>{{ greeting }}</p>
+            <p>{{ worktime }}</p>
+            <p>作業内容
+                <ul>
+                    <li v-for="item in todos" :key="item.text">・{{ item.text }}</li>
+                </ul>
+            </p>
+            <p>{{ endgreeting }}</p><br>
         </div>
         <style>
             .donestyle{
@@ -28,6 +37,9 @@
             }
         </style>
         <script>
+            var task = null;
+            var varboss = '課長様\n';
+            var vargreeting = 'お疲れ様です\n\nびゅう太郎です';
             new Vue({
                 el:'#app',
                 data:{
@@ -36,8 +48,11 @@
                         {done:false, text:'パンを買う'},
                         {done:false, text:'コーヒーを買う'}
                     ],
-                    subject:'メールタイトル',
-                    body:'本文'
+                    subject:'mm/dd(dow)の作業連絡です',
+                    greeting:vargreeting,
+                    boss:varboss,
+                    worktime:'作業予定時間：00:00~99:99',
+                    endgreeting:'以上になります'
                 },
                 computed:{
                     remaining:function(){
@@ -56,12 +71,7 @@
                     clearnToDo:function(){
                         this.todos = this.todos.filter(function(val){
                             return val.done==false;
-                        })
-                    },
-                    outputBody:function(){
-                        return this.todos.filter(function(val){
-                            return item.todos.text.toString();
-                        })
+                        });
                     }
                 }
             })
